@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "brand": "Mister Movie",
+  "revision": 1,
+  "display": {
+    "keepBundledBanners": true,
+    "showToFree": true,
+    "showToPremium": true,
+    "remoteOrder": "afterWelcomeBeforeEditorial",
+    "maxRemoteItems": 8
+  },
+  "items": [],
+  "cache": {
+    "ttlSeconds": 21600,
+    "maxStaleSeconds": 604800
+  },
+  "notice": "Nenhum banner remoto foi publicado ainda. Itens exigem HTTPS publico, imagem WebP realmente enviada e aprovacao do responsavel. Nunca referenciar checkout aqui; compras sao iniciadas por API protegida."
+}
