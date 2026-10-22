@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "brand": "Mister Movie",
+  "revision": 1,
+  "share": {
+    "downloadUrl": "https://tinyurl.com/374hfr3n",
+    "message": "Conheça o Mister Movie!\n\nSeus filmes e séries favoritos em um só lugar. Aproveite gratuitamente ou descubra os benefícios Premium.\n\nBaixe e compartilhe: https://tinyurl.com/374hfr3n",
+    "qrTargetUrl": "https://tinyurl.com/374hfr3n",
+    "qrImageUrl": null
+  },
+  "cache": {
+    "ttlSeconds": 21600,
+    "maxStaleSeconds": 604800
+  },
+  "notice": "CONFIGURACAO PUBLICA: nao inserir CPF, dados bancarios, segredo Stripe, chave Android, tokens ou URLs de checkout."
+}
