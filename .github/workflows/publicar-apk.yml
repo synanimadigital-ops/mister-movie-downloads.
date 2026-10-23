@@ -1,0 +1,47 @@
+name: Publicar APK Mister Movie
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/publicar-apk.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar APK oficial do Drive
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 --connect-timeout 30 --max-time 1800 \
+            --user-agent "Mozilla/5.0" \
+            "https://drive.usercontent.google.com/download?id=1u_wY-UUIw2Bunx7TrpNEgVgAuPsmg8G8&export=download&confirm=t" \
+            --output "Mister.Movie.apk"
+
+      - name: Conferir integridade exata antes de publicar
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(stat -c%s Mister.Movie.apk)" -eq 43427640
+          echo "20ee2ef6dd351fa193769ae08ee9b765a65433ce15a191ecdccb0b4bfcfc145a  Mister.Movie.apk" | sha256sum --check
+          unzip -tqq "Mister.Movie.apk"
+
+      - name: Publicar release sem modificar o APK antigo
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="v5.0-drive-20261022"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release ja existe; nao sobrescrever." >&2
+            exit 0
+          fi
+          gh release create "$TAG" "Mister.Movie.apk" \
+            --title "Mister Movie - distribuicao oficial" \
+            --notes "APK oficial identico ao arquivo publico do Drive validado em 22/10/2026. SHA-256: 20ee2ef6dd351fa193769ae08ee9b765a65433ce15a191ecdccb0b4bfcfc145a." \
+            --latest
