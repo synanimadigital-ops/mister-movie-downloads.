@@ -33,6 +33,7 @@ jobs:
       - name: Publicar release sem modificar o APK antigo
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: synanimadigital-ops/mister-movie-downloads.
         shell: bash
         run: |
           set -euo pipefail
